@@ -2,13 +2,14 @@ import React from "react";
 import Moment from "react-moment";
 
 function Results(props) {
+    
     return (
         <div className="container">
             <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Image</th>
-                        <th>Name</th>
+                        <th><button onClick={() => props.updatedState()}>Name</button></th>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>DOB</th>
@@ -29,19 +30,5 @@ function Results(props) {
         </div>
     )
 }
-
-
-// function Results(props) {
-//     return (
-//         <ul className="list-group">
-//             {props.list.map(person => (
-//                 <li className="list-group-item" key={person.name.first + person.name.last}>
-//                     <img alt={person.name.first} className="img-fluid" src={person.picture.large} />
-//                     <p>{person.name.first}</p>
-//                 </li>
-//             ))}
-//         </ul>
-//     )
-// }
 
 export default Results;
