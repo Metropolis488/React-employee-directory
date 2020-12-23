@@ -1,84 +1,3 @@
-// import React, { Component } from "react";
-// import Container from "./Container";
-// import Results from "./Results"
-// import Axios from "axios";
-
-// class MainApp extends Component {
-//     state = {
-//         list: [],
-//         filtered: []
-//     };
-
-//     sortData = () => {
-//         console.log("Hello")
-//         const ordered = [...this.state.list]
-//         ordered.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1)
-//         this.setState({
-//             list: ordered
-//         })
-//     }
-
-//     nameFilter = () => {
-//         console.log("trying to filter")
-//         // nUpdate
-//     }
-
-//     handleInputChange = (text) => {
-//         console.log(text)
-//         const filtered = [...this.state.list]
-//         const matches = filtered.name.last.filter(s => s.includes(text))
-//         console.log(matches)
-//         // console.log(nUpdate)
-//         // const filteredNames = nUpdate.filter(el => el.toLowerCase().indexOf(text.toLowerCase()) !== -1);
-//         // console.log(filteredNames)  
-//         // this.nameFilter(event.target.value)
-//     }
-
-//     componentDidMount() {
-//         console.log("hello")
-//         Axios.get("https://randomuser.me/api?results=25")
-//             .then(res => {
-//                 const mapped = res.data.results.map(e => ({
-//                     firstName: e.name.first,
-//                     lastName: e.name.last
-//                 }))
-
-//                 console.log(mapped)
-//                 console.log(res.data.results)
-//                  // this.setState({ list: res.data.results })
-//                 // console.log(this.state.list)
-//             })
-//     }
-
-//     render() {
-//         console.log("I have rendered")
-//         return (
-//             <Container handleInputChange={this.handleInputChange}>
-
-//                 <Results list={this.state.list} updatedState={this.sortData}
-//                 //   handleFormSubmit={handleFormSubmit}
-//                 />
-//             </Container>
-//         )
-//     }
-// }
-
-// export default MainApp
-
-// //  render() {
-// //         console.log("I have rendered");
-// //         const roles = {this.state.list}
-// //         return {roles.map(p =>
-// //                 <Results
-// //                 first={p.name.first}
-// //                 last={p.name.last}
-// //                 img={p.picture.large}
-// //                 dob={p.dob.date}
-// //                 email={p.email}
-// //                 phone={p.phone}
-// //                 />)}
-// //             }
-// //     }
 import React, { Component } from "react";
 import Container from "./Container";
 import Axios from "axios";
@@ -91,7 +10,6 @@ class MainApp extends Component {
         sortBy: ""
     };
 
-    // sortData = ({ target: { textContent: TC } }) => {
     sortData = (e) => {
         const TC = e.target.textContent
         this.setState({
@@ -102,32 +20,6 @@ class MainApp extends Component {
     handleInputChange = (text) => this.setState({
         filtered: this.state.list.filter(x => Object.values(x).map(x => x.toLowerCase()).some(x => x.includes(text)))
     })
-
-    _handleInputChange = (text) => {
-        const filtered = [];
-
-        for (const x of this.state.list) {
-            const values = Object.values(x);
-
-            const lowerCase_values = []
-            for (const value of values) {
-                lowerCase_values.push(value.toLowerCase())
-            }
-
-            let hasSubString = false;
-            for (const value of lowerCase_values) {
-                if (value.includes(text)) {
-                    hasSubString = true;
-                    break;
-                }
-            }
-
-            if (hasSubString) filtered.push(x)
-        }
-
-        this.setState({ filtered })
-    }
-
 
     componentDidMount() {
         Axios.get("https://randomuser.me/api?results=25")
@@ -178,18 +70,3 @@ class MainApp extends Component {
 }
 
 export default MainApp
-
-
-const obj = {
-    "first name": "Ben",
-    pets: true,
-    age: 32
-}
-
-// console.log(obj["first name"])
-// Object.keys(obj).map(x => console.log(x))
-// console.log(Object.values(obj))
-
-for(const key in obj){
-    console.log(key, obj[key])
-}
